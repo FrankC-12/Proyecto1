@@ -28,7 +28,7 @@ public class Funciones {
 
     public void Leertxt() {
         int p = 0;
-        int l = 0;
+        String rutas_finales[][];
         String line;
         String almacenes_txt = "";
         String rutas_txt = "";
@@ -56,55 +56,72 @@ public class Funciones {
 
                         } else {
                             rutas_txt += line + "\n";
+                            p++;
 
                         }
                     }
                 }
 
                 if ((!"".equals(almacenes_txt)) && (!"".equals(rutas_txt))) {
-                    String[] AlmacenesSplit1 = almacenes_txt.split(";");
-                    String[] RoutesSplit = rutas_txt.split("/n");
+                    String[] split1 = almacenes_txt.split(";");
+                    String[] routesSplit = rutas_txt.split("\n");
+                    Lista_Stock Lista = new Lista_Stock();
+                    rutas_finales = new String[p-1][3];
 
-                    p = AlmacenesSplit1.length;
-                    l = RoutesSplit.length;
-                    almacenes = new String[p][2];
-                    rutas = new String[l][2];
+                    try {
 
-                    for (int i = 0; i < AlmacenesSplit1.length; i++) {
-                        String[] AlmacenesSplit2 = AlmacenesSplit1[i].split(":");
-                        String [] AlmacenesSplit3= AlmacenesSplit2[i].split("/n");
-                          for (int j = 0; j < AlmacenesSplit3.length; j++) {
-                              String [] AlmacenesSplit4= AlmacenesSplit3[i+1].split(",");
-                              AlmacenesSplit3[i] = AlmacenesSplit4;
-                               
-                              
-                              
-                              
-                        
-                        
+                        for (int j = 0; j < routesSplit.length; j++) {
+                            if (j == 0) {
+                                continue;
+                            } else {
+                                String[] routesSplit2 = routesSplit[j].split(",");
+                                rutas_finales[j - 1] = routesSplit2;
+                            }
+                        }
+
+                        for (int i = 1; i < split1.length; i++) {
+                            String[] split2 = split1[i].split("\n");
+                            Nodo nodito = new Nodo();
+                            nodito.productos = new String[split2.length - 2][2];
+
+                            for (int j = 1; j < split2.length; j++) {
+                                if (j == 1) {
+                                    nodito.setNombre_Almacen(split2[j]);
+                                    Lista.FinalInsertNodo(nodito);
+
+                                } else if (j > 1) {
+                                    String aux1 = split2[j];
+                                    String split3[] = aux1.split(",");
+                                    nodito.productos[j - 2] = split3;
+                                }
+                            }
+                        }
+
+                    } catch (Exception e) {
+                        System.out.println("j");
                     }
-                        
+
+                    for (String[] x : rutas_finales) {
+
+                        for (String y : x) {
+                            System.out.print(y);
+                        }
                     }
-                  
-                    
-
-                
-                for (int j = 0; j < RoutesSplit.length; j++) {
-                    String[] RoutesSplit2 = RoutesSplit[j].split(",");
-                    rutas[j] = RoutesSplit2;
-
+                    Nodo aux = Lista.getpFirst();
+                    for (int i = 0; i < Lista.getSize(); i++) {
+                        System.out.println(aux.getNombre_Almacen());
+                        for (String[] x : aux.getProductos()) {
+                            System.out.println(x[0]);
+                            System.out.println(x[1]);
+                        }
+                        aux = aux.getPnext();
+                    }
                 }
-
+                br.close();
             }
-            br.close();
-        }
-    }
-    catch (IOException ex
-
-    
-        ) {
+        } catch (IOException ex) {
             System.out.println("error al leer el txt");
-    }
+        }
 
-}
+    }
 }

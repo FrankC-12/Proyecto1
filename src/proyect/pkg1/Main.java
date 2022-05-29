@@ -10,8 +10,8 @@ package proyect.pkg1;
  */
 public class Main {
      public static void main(String[] args) {
-        Funciones func = new Funciones();
-        func.Leertxt();
+        Grafo grafito = new Grafo();
+        grafito.Leertxt();
     
 }
 }

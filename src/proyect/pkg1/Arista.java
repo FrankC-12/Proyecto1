@@ -9,58 +9,45 @@ package proyect.pkg1;
  * @author giubo
  */
 public class Arista {
-    private String almacen_principio;
-   private  String almacen_final;
-    
-   private  Lista_Stock stock;
-   private int peso;
 
-    public Arista(String almacen_principio, String almacen_final, int peso) {
-        this.almacen_principio = almacen_principio;
-        this.almacen_final = almacen_final;
+    private int almacen_origen;
+    private int almacen_destino;
+    private int peso;
+
+
+    public Arista(int origen, int destino, int peso) {
+        this.almacen_origen = origen;
+        this.almacen_destino = destino;
         this.peso = peso;
+
     }
 
     /**
-     * @return the almacen_principio
+     * @return the almacen_origen
      */
-    public String getAlmacen_principio() {
-        return almacen_principio;
+    public int getAlmacen_origen() {
+        return almacen_origen;
     }
 
     /**
-     * @param almacen_principio the almacen_principio to set
+     * @param almacen_origen the almacen_origen to set
      */
-    public void setAlmacen_principio(String almacen_principio) {
-        this.almacen_principio = almacen_principio;
+    public void setAlmacen_origen(int almacen_origen) {
+        this.almacen_origen = almacen_origen;
     }
 
     /**
-     * @return the almacen_final
+     * @return the almacen_destino
      */
-    public String getAlmacen_final() {
-        return almacen_final;
+    public int getAlmacen_destino() {
+        return almacen_destino;
     }
 
     /**
-     * @param almacen_final the almacen_final to set
+     * @param almacen_destino the almacen_destino to set
      */
-    public void setAlmacen_final(String almacen_final) {
-        this.almacen_final = almacen_final;
-    }
-
-    /**
-     * @return the stock
-     */
-    public Lista_Stock getStock() {
-        return stock;
-    }
-
-    /**
-     * @param stock the stock to set
-     */
-    public void setStock(Lista_Stock stock) {
-        this.stock = stock;
+    public void setAlmacen_destino(int almacen_destino) {
+        this.almacen_destino = almacen_destino;
     }
 
     /**
@@ -76,6 +63,4 @@ public class Arista {
     public void setPeso(int peso) {
         this.peso = peso;
     }
-   
-   
 }
