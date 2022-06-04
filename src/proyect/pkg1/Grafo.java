@@ -27,12 +27,13 @@ public class Grafo {
         this.warehouses = warehouses;
     }
 
-    public void Leertxt() {
+    public VertexList Leertxt() {
         int p = 0;
 
         String line;
         String almacenes_txt = "";
         String rutas_txt = "";
+        VertexList Lista = new VertexList();
 
         try {
             JFileChooser file = new JFileChooser();
@@ -66,7 +67,7 @@ public class Grafo {
                 if ((!"".equals(almacenes_txt)) && (!"".equals(rutas_txt))) {
                     String[] split1 = almacenes_txt.split(";");
                     String[] routesSplit = rutas_txt.split("\n");
-                    Lista_Stock Lista = new Lista_Stock();
+                    
                     rutas_finales = new String[p - 1][3];
 
                     try {
@@ -81,7 +82,7 @@ public class Grafo {
 
                         for (int i = 1; i < split1.length; i++) {
                             String[] split2 = split1[i].split("\n");
-                            Nodo nodito = new Nodo();
+                            Vertex nodito = new Vertex();
                             nodito.productos = new String[split2.length - 2][2];
 
                             for (int j = 1; j < split2.length; j++) {
@@ -107,7 +108,7 @@ public class Grafo {
                             System.out.print(y);
                         }
                     }
-                    Nodo aux = Lista.getpFirst();
+                    Vertex aux = Lista.getpFirst();
                     for (int i = 0; i < Lista.getSize(); i++) {
                         System.out.println(aux.getNombre_Almacen());
                         for (String[] x : aux.getProductos()) {
@@ -116,16 +117,20 @@ public class Grafo {
                         }
                         aux = aux.getPnext();
                     }
+                    
                 }
                 br.close();
+               
+                
             }
         } catch (IOException ex) {
             System.out.println("error al leer el txt");
+            return null;
         }
-
+      return Lista;
     }
 
-    public void crearMatrizAd() {
+    public Integer [][] crearMatrizAd() {
         Leertxt();
         for (int i = 0; i < rutas_finales.length; i++) {
             System.out.println(rutas_finales.length);
@@ -142,7 +147,16 @@ public class Grafo {
 
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Por favor ingrese datos correctos en el Archivo de txt");
+                return null;
             }
-        }
+        } return MatrizAdyacencia;
+        
+    }
+    
+    public void RecorridoDFS(){
+        VertexList List= Leertxt();
+        
+        
+        
     }
 }
