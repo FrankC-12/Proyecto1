@@ -47,6 +47,7 @@ public class WeightNode {
         this.weight = 0;
         this.Vertex1 = verx1;
         this.Vertex2 = verx2;
+        String c;
 
     }
 
