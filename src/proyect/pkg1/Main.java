@@ -10,8 +10,6 @@ package proyect.pkg1;
  */
 public class Main {
      public static void main(String[] args) {
-        Grafo grafito = new Grafo();
-        grafito.Leertxt();
-    
+        
 }
 }

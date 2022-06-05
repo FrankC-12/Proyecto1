@@ -16,147 +16,224 @@ import javax.swing.JOptionPane;
  * @author giubo
  */
 public class Grafo {
-    private int maxNodos;
-    private int numVertices;
-    Integer MatrizAdyacencia[][];
-    boolean warehouses;
-    String rutas_finales[][];
 
-    public Grafo() {
-       maxNodos = numVertices=0;
-        this.warehouses = warehouses;
-    }
+    public VertexList vertices;
+    public WeightList peso;
+    public int numNodo;
+    public int realnumNodo;
+    public Vertex[] vertexarray;
+    public int[][] adjacent;
 
-    public VertexList Leertxt() {
-        int p = 0;
-
-        String line;
-        String almacenes_txt = "";
-        String rutas_txt = "";
-        VertexList Lista = new VertexList();
-
-        try {
-            JFileChooser file = new JFileChooser();
-            file.showOpenDialog(null);
-            File abre = file.getSelectedFile();
-
-            if (abre != null) {
-                FileReader archivos = new FileReader(abre);
-                BufferedReader br = new BufferedReader(archivos);
-                while ((line = br.readLine()) != null) {
-                    if (!line.isEmpty()) {
-                        if ("Almacenes;".equals(line)) {
-                            warehouses = true;
-
-                        } else if ("Rutas;".equals(line)) {
-                            warehouses = false;
-                            System.out.println("hola");
-                        }
-
-                        if (warehouses == true) {
-                            almacenes_txt += line + "\n";
-
-                        } else {
-                            rutas_txt += line + "\n";
-                            p++;
-
-                        }
-                    }
-                }
-
-                if ((!"".equals(almacenes_txt)) && (!"".equals(rutas_txt))) {
-                    String[] split1 = almacenes_txt.split(";");
-                    String[] routesSplit = rutas_txt.split("\n");
-                    
-                    rutas_finales = new String[p - 1][3];
-
-                    try {
-
-                        for (int j = 0; j < routesSplit.length; j++) {
-                            if (j == 0) {
-                            } else {
-                                String[] routesSplit2 = routesSplit[j].split(",");
-                                rutas_finales[j - 1] = routesSplit2;
-                            }
-                        }
-
-                        for (int i = 1; i < split1.length; i++) {
-                            String[] split2 = split1[i].split("\n");
-                            Vertex nodito = new Vertex();
-                            nodito.productos = new String[split2.length - 2][2];
-
-                            for (int j = 1; j < split2.length; j++) {
-                                if (j == 1) {
-                                    nodito.setNombre_Almacen(split2[j]);
-                                    Lista.FinalInsertNodo(nodito);
-
-                                } else if (j > 1) {
-                                    String aux1 = split2[j];
-                                    String split3[] = aux1.split(",");
-                                    nodito.productos[j - 2] = split3;
-                                }
-                            }
-                        }
-
-                    } catch (Exception e) {
-                        System.out.println("j");
-                    }
-
-                    for (String[] x : rutas_finales) {
-
-                        for (String y : x) {
-                            System.out.print(y);
-                        }
-                    }
-                    Vertex aux = Lista.getpFirst();
-                    for (int i = 0; i < Lista.getSize(); i++) {
-                        System.out.println(aux.getNombre_Almacen());
-                        for (String[] x : aux.getProductos()) {
-                            System.out.println(x[0]);
-                            System.out.println(x[1]);
-                        }
-                        aux = aux.getPnext();
-                    }
-                    
-                }
-                br.close();
-               
-                
-            }
-        } catch (IOException ex) {
-            System.out.println("error al leer el txt");
-            return null;
-        }
-      return Lista;
-    }
-
-    public Integer [][] crearMatrizAd() {
-        Leertxt();
-        for (int i = 0; i < rutas_finales.length; i++) {
-            System.out.println(rutas_finales.length);
-            String ruticas[] = rutas_finales[i];
-            String filita = ruticas[0].toUpperCase();
-            String columnita = ruticas[1].toUpperCase();
-
-            try {
-                int fila = Integer.parseInt(filita) - 65;
-                int columna = Integer.parseInt(columnita) - 65;
-                int peso_arista = Integer.parseInt(ruticas[2]);
-                Arista aristaAux = new Arista(fila, columna, peso_arista);
-                MatrizAdyacencia[fila][columna] = peso_arista;
-
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Por favor ingrese datos correctos en el Archivo de txt");
-                return null;
-            }
-        } return MatrizAdyacencia;
-        
-    }
+    /**
+     * Funcion getVertices Retorna el atributo vertices
+     *
+     * @author Frank,Giulianna
+     * @return the vertices
+     */
     
-    public void RecorridoDFS(){
-        VertexList List= Leertxt();
-        
-        
-        
+    
+    public VertexList getVertices() {
+        return vertices;
+
+    }
+
+    /**
+     * Funcion getPeso Retorna el atributo peso
+     *
+     * @author Frank,Giulianna
+     * @return the peso
+     */
+    public WeightList getPeso() {
+        return peso;
+    }
+
+    /**
+     * Funcion getNumNodo Retorna el atributo numNodo
+     *
+     * @author Frank,Giulianna
+     * @return the numNodo
+     */
+    public int getNumNodo() {
+        return numNodo;
+    }
+
+    /**
+     * Funcion getVertexarray Retorna el atributo vertexarray
+     *
+     * @author Frank,Giulianna
+     * @return the vertexarray
+     */
+    public Vertex[] getVertexarray() {
+        return vertexarray;
+    }
+
+    /**
+     * Funcion getAdjacent Retorna el atributo adjacent
+     *
+     * @author Frank,Giulianna
+     * @return the adjacent
+     */
+    public int[][] getAdjacent() {
+        return adjacent;
+    }
+
+    /**
+     * Procedimiento MatrixGraph Crea una matriz de tamaño dado por nosotros
+     *
+     * @author Frank
+     * @param vertices
+     * @param peso
+     * @param NodoId
+     * @param RealNum
+     */
+    
+    public void MatrixGraph(VertexList vertices, WeightList peso, int NodoId, int RealNum) {
+        try {
+
+            this.vertices = vertices;
+            this.peso = peso;
+            this.adjacent = new int[RealNum][RealNum];
+            this.vertexarray = new Vertex[RealNum];
+            for (int i = 0; i < RealNum; i++) {
+                for (int j = 0; j < RealNum; j++) {
+                    adjacent[i][j] = 0;
+                }
+                numNodo = 0;
+                realnumNodo = 0;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha introducido un tipo de dato inválido", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Procedimiento pntAllelmnt Imprime los elementos de la matriz
+     *
+     * @author Frank,Giulianna
+     */
+    public void pntAllelmnt() {
+
+        for (int i = 0; i < realnumNodo; i++) {
+            for (int j = 0; j < realnumNodo; j++) {
+                JOptionPane.showMessageDialog(null, this.adjacent[i][j]);
+            }
+        }
+    }
+
+    /**
+     * Procedimiento newVertex Crea el vertice de la matriz
+     *
+     * @author Frank,Giulianna
+     * @param vertice
+     */
+    public void newVertex(Vertex vertice) {
+        boolean isfound = returnIfVxFounded(vertice.getName());
+        System.out.println(vertice.getName());
+        if (!isfound) {
+            vertexarray[realnumNodo++] = vertice;
+        }
+
+    }
+
+    /**
+     * Funcion returnIfVxFounded Devuelve verdadero si se encuentra el vertice
+     * en la matriz, falso si no se consigue
+     *
+     * @author Frank,Giulianna
+     * @param vertice
+     * @return boolean
+     */
+
+    public boolean returnIfVxFounded(String vertice) {
+        for (int i = 0; i < realnumNodo; i++) {
+            if (vertice.equals(vertexarray[i].getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Funcion getIndex Se obtiene el indice de un elemento en la matriz
+     *
+     * @author Frank,Giulianna
+     * @param v
+     * @return int
+     */
+    public int getIndex(String v) {
+        for (int i = 0; i < realnumNodo; i++) {
+            if (v.equals(vertexarray[i].getName())) {
+                return i;
+            }
+
+        }
+        return -1;
+    }
+
+    /**
+     * Funcion getVertex Se obtiene el indice pero sin el numero del vertice
+     *
+     * @param v
+     * @return int
+     */
+    public int getVertex(Vertex v) {
+        for (int i = 0; i < realnumNodo; i++) {
+            if (v.getName().equals(vertexarray[i].getName())) {
+                return i;
+            }
+
+        }
+        return -1;
+    }
+
+    /**
+     * Procedimiento newArc Se crea un arco
+     *
+     * @author Frank,Giulianna
+     * @param origen
+     * @param destino
+     * @param weight
+     */
+    public void newArc(String origen, String destino, int weight) {
+        boolean founded = returnIfVxFounded(origen);
+        boolean founded2 = returnIfVxFounded(destino);
+        if ((founded == true) && (founded2 == true)) {
+            int i = getIndex(origen);
+            int j = getIndex(destino);
+            adjacent[i][j] = weight;
+        }
+    }
+
+    /**
+     * Funcion adyacentebynum Se devuelve el arco buscado
+     *
+     * @author Frank,Giulianna
+     * @param i
+     * @param k
+     * @return int
+     */
+    public int adyacentebynum(int i, int k) {
+        return adjacent[i][k];
+    }
+
+    /**
+     * Funcion RetornarMatriz Se imprime la matriz
+     *
+     * @author Frank,Giulianna
+     * @return
+     */
+    public String RetornarMatriz() {
+        String aux = "";
+        for (int i = 0; i < this.realnumNodo; i++) {
+            String line = "";
+            for (int j = 0; j < this.realnumNodo; j++) {
+                line += " | " + this.getAdjacent()[i][j] + " | ";
+            }
+            aux += line + "\n";
+
+        }
+
+        return aux;
+
     }
 }

@@ -19,18 +19,18 @@ import javax.swing.JOptionPane;
 public class Funciones {
 public Funciones(){
         
-    }
+}
     
    /**
      * Procedimiento writeTxt
      * Este procedimiento guarda los datos de las listas actuales en el txt
-     * @author Andy
+     * @author Frank,Giulianna
      * @param vertex
-     * @param listsimp 
+     * @param 
      */   
        
     
-    public void writeTxt(VertexList vertex, ProductsList listsimp){
+    public void writeTxt(VertexList vertex, WeightList listsimp){
         String txt = "";
         String txt2 ="";
         
@@ -39,8 +39,8 @@ public Funciones(){
             
             for(int i = 0;i< vertex.getSize()-1;i++){
                 txt +="Almacen "+ temp.getName() + ":"+"\n";
-                Lista_productos lispro=temp.getListaver();
-                Nodo_productos mynod= lispro.getPrimer_producto();
+                ProductsList lispro=temp.getListaver();
+                ProductsNode mynod= lispro.getPrimer_producto();
                 for(int j = 0;j< lispro.getSize()-1;j++){
                     txt += mynod.getNombre() +","+mynod.getCantidad()+"\n";
                     mynod = mynod.getProximo();
@@ -51,7 +51,7 @@ public Funciones(){
         }
         
         if(!listsimp.IsEmpty()){
-            Nodoweight temp1= listsimp.getpFirst();
+            WeightNode temp1= listsimp.getpFirst();
             for(int z =0;z< listsimp.getSize()-1;z++){
                 txt2 +=temp1.getVertex1()+","+temp1.getVertex2()+","+temp1.getWeight()+"\n";
                 temp1 =temp1.getpNext();
@@ -76,15 +76,15 @@ public Funciones(){
      /**
      * Funcion Leer_txt
      * Esta funcion devuelve la lista de los pesos
-     * @author Andy
-     * @return ListaSimple
+     * @author Frank,Giulianna
+     * @return WeightList
      * @param path
      * @param listaVer 
      */
     
     
-    public ListaSimple Leer_txt(String path,ListaVertex listaVer){
-        ListaSimple lista = new ListaSimple();
+    public WeightList Leer_txt(String path,VertexList listaVer){
+        WeightList lista = new WeightList();
         String line;
         String info = "";
         File file = new File(path);
@@ -112,7 +112,7 @@ public Funciones(){
                     for(int i = 0;i< infos.length;i++){
                         String[] infod = infos[i].split(",");
                         
-                        Nodoweight mynod = new Nodoweight(infod[0],infod[1],Integer.parseInt(infod[2]));
+                        WeightNode mynod = new WeightNode(infod[0],infod[1],Integer.parseInt(infod[2]));
                         lista.addAtEnd(mynod);
                         
                     }
@@ -132,13 +132,13 @@ public Funciones(){
      /**
      * Funcion Leer_matrix
      * Esta funcion solo devuelve la lista de los vertices
-     * @author Andy
+     * @author Frank,Giulianna
      * @param path
-     * @return ListaVertex la lista de los vertices
+     * @return VertexList la lista de los vertices
      */
     
-    public ListaVertex Leer_matrix(String path){
-        ListaVertex lista = new ListaVertex();
+    public VertexList Leer_matrix(String path){
+        VertexList lista = new VertexList();
         String line;
         String infotd = "";
         
@@ -167,18 +167,18 @@ public Funciones(){
                         newell[1] = newell[1].stripLeading();
                         String otros = newell[1].replace("\n",",");
                         String[] low = otros.split(",");
-                        Lista_productos listprod =new Lista_productos();
+                        ProductsList listprod =new ProductsList();
                         
                         
                         for(int j = 0;j< low.length-1;j++){
                             int k=j;
                             int m =j+1;
-                            Nodo_productos nod =new Nodo_productos(low[k],Integer.parseInt(low[m]));
+                            ProductsNode nod =new ProductsNode(low[k],Integer.parseInt(low[m]));
                             j=j+1;
-                            listprod.addAtEnd(nod);
+                            listprod.AddAtEnd(nod);
                         }
                         Vertex vers =new Vertex(miAlmacen,listprod);
-                        lista.addAtEnd(vers);
+                        lista.AddAtEnd(vers);
                     }
                 }
                 br.close();
@@ -194,6 +194,8 @@ public Funciones(){
     
     
 }
+    
+    
     
     
 
