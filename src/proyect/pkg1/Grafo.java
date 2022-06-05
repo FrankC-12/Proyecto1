@@ -236,4 +236,9 @@ public class Grafo {
         return aux;
 
     }
+    
+    public Vertex getVerbyint(int index){
+        Vertex s=this.vertexarray[index];
+        return s;
+    }
 }
