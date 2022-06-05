@@ -27,7 +27,7 @@ public class Recorrido {
      * clase
      *
      * @author Frank,Giulianna
-     * @param matrix
+     * 
      */
     public Recorrido() {
 
