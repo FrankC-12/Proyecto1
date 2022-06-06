@@ -11,10 +11,6 @@ import proyect.pkg1.ProductsList;
 import proyect.pkg1.ProductsNode;
 import proyect.pkg1.Vertex;
 
-/**
- *
- * @author andy
- */
 public class Stock extends javax.swing.JFrame {
     
     public Inicio mywin;

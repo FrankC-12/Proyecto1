@@ -15,10 +15,6 @@ import proyect.pkg1.WeightList;
 import proyect.pkg1.Grafo;
 
 
-/**
- *
- * @author andy
- */
 public class NewCargar extends javax.swing.JFrame {
 
     static Funciones fc;

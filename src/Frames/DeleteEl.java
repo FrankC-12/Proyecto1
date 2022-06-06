@@ -11,10 +11,6 @@ import proyect.pkg1.Funciones;
 import proyect.pkg1.Grafo;
 import org.graphstream.graph.Graph;
 
-/**
- *
- * @author andy
- */
 public class DeleteEl extends javax.swing.JFrame {
     public Inicio mywin;
     /**

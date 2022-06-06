@@ -16,10 +16,7 @@ import proyect.pkg1.Grafo;
 import proyect.pkg1.ProductsNode;
 import proyect.pkg1.Vertex;
 
-/**
- *
- * @author andy
- */
+
 public class Pedido extends javax.swing.JFrame {
     private Inicio mywin;
     static Funciones fc;
