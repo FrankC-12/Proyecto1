@@ -1,0 +1,12 @@
+PASOS PARA DESCARGAR LA LIBRERIA NECESARIA PARA CORRER EL PROYECTO
+
+1- Ir a GraphStream (https://graphstream-project.org/download/)
+2- Descargar la version 1.3 (El archivo archivos gs-core )
+3- Descomprimir las carpeta correspondiente (core)
+4- Ir al proyecto en Netbeans, a la parte donde dice "Libreries" darle a click 
+derecho y presionar "Add Jar Folder y seleccionar la carpeta de core y de esta 
+carpeta seleccionar el archivo "gs-core-1.3.jar" 
+
+
+NOTA: ES NECESARIO TENER LA LIBRERIA ABSOLUTE LAYOUT, EN CASO DE ERROR COLOCARSE EN "LIBRARIES" PRESIONAR BOTON DERECHO, AGREGAR LIBRERIA, SELECCIONAR ABSOLUTE LAYOUT Y 
+DAR CLICK EN AGREGAR
