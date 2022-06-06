@@ -189,7 +189,7 @@ public class Inicio extends javax.swing.JFrame {
             getMatrixre().CrearNodes(grafico);
             getMatrixre().CrearEdges(grafico);}
         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "No se puede crear el grafo", "Negativo", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se puede crear el grafo", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_imprimirGrafoActionPerformed
@@ -200,7 +200,7 @@ public class Inicio extends javax.swing.JFrame {
             delW.setVisible(true);
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "No puede eliminarse", "Negativo", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar el Almacen", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_eliminarAlmacenActionPerformed
 
@@ -211,7 +211,7 @@ public class Inicio extends javax.swing.JFrame {
             dis.setVisible(true);
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "No puede agregarse el almacen", "Error terrible", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se pudp agregar el almacen", "ERROR", JOptionPane.ERROR_MESSAGE);
             this.setVisible(true);
         }
     }//GEN-LAST:event_agregarStockActionPerformed

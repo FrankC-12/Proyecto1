@@ -519,7 +519,7 @@ public class Stock extends javax.swing.JFrame {
             }
         }
         catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "El tipo de dato introducido es erróneo","Error!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El tipo de dato introducido es erróneo","ERROR",JOptionPane.ERROR_MESSAGE);
         }
         Funciones func = new Funciones();
         func.writeTxt(mywin.listaVersx, mywin.listaSimpe);

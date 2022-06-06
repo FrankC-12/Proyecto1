@@ -114,7 +114,7 @@ public class NewCargar extends javax.swing.JFrame {
             Funciones funct=new Funciones();
             funct.writeTxt(mywin.listaVersx, mywin.listaSimpe);
         } catch(Exception e){
-            JOptionPane.showMessageDialog(this, "ERROR!!! NO SE QUÉ HICISTE PERO MAL!");
+            JOptionPane.showMessageDialog(this, "ERROR!");
         };
     }//GEN-LAST:event_guardarTXTActionPerformed
 
@@ -133,7 +133,7 @@ public class NewCargar extends javax.swing.JFrame {
         try{
            
         } catch (Exception e){
-            JOptionPane.showMessageDialog(this, "ERROR!!! NO SE QUÉ HICISTE PERO MAL!");
+            JOptionPane.showMessageDialog(this, "ERROR!");
         }
     }//GEN-LAST:event_cargarTXTActionPerformed
 

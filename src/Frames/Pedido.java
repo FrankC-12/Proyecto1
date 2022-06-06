@@ -622,7 +622,7 @@ public class Pedido extends javax.swing.JFrame {
         
         
         catch(Exception e){
-            JOptionPane.showMessageDialog(null,"No puede procesarse la orden por alguna razon");
+            JOptionPane.showMessageDialog(null,"No se pudo procesar la orden");
         }
         
     }//GEN-LAST:event_AceptarActionPerformed

@@ -64,7 +64,7 @@ public class Stack {
      /**
      * Procedimiento setIn
      * En este procedimiento se le asigna un valor al elemento in de la pila
-     * @author FrankGiulianna
+     * @author Frank,Giulianna
      * @param in 
      */
     

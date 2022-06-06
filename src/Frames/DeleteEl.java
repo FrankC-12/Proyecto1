@@ -115,7 +115,7 @@ public class DeleteEl extends javax.swing.JFrame {
             func.writeTxt(mywin.listaVersx, mywin.listaSimpe);
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Hay un vertice aislado,reiniciando todo el programa");
+            JOptionPane.showMessageDialog(null, "ERROR. Existencia de vertice aislado");
             Inicio newWin=new Inicio();
             newWin.setVisible(true);
             mywin.dispose();
