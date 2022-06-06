@@ -16,10 +16,7 @@ import proyect.pkg1.Recorrido;
 import proyect.pkg1.Vertex;
 import org.graphstream.graph.Graph;
 
-/**
- *
- * @author andy
- */
+
 public class Inicio extends javax.swing.JFrame {
     public Grafo matrixre;
     public WeightList listaSimpe;
