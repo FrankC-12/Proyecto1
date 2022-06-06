@@ -268,7 +268,7 @@ public class VertexList {
      * @author Frank,Giulianna
      * @param name
      */
-    public void DeleteMyName(String name) {
+    public void DeleteByName(String name) {
         if (name.equals(this.pFirst.getName())) {
             this.pFirst = this.pFirst.getSiguiente();
         } else if (name.equals(this.pLast.getName())) {

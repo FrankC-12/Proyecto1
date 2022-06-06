@@ -4,12 +4,17 @@
  */
 package proyect.pkg1;
 
+import Frames.Inicio;
+
 /**
  *
  * @author giubo
  */
 public class Main {
      public static void main(String[] args) {
+         Inicio mf= new Inicio();
+        mf.setVisible(true);
+        
         
 }
 }

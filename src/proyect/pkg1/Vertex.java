@@ -9,7 +9,7 @@ package proyect.pkg1;
  * @author giubo
  */
 
-class Vertex {
+public class Vertex {
 
     private String name;
     private ProductsList listaver;

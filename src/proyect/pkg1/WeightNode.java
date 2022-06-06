@@ -37,7 +37,7 @@ public class WeightNode {
      * Procedimiento Nodoweight Constructor que se utilizara para la
      * inicializacion de los Nodoweight en el programa
      *
-     * @author Ulises,Andy,Hector
+     * @author Giulianna
      * @param verx1
      * @param verx2
      */
@@ -160,4 +160,3 @@ public class WeightNode {
     }
 
 }
-

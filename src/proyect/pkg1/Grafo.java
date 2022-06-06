@@ -10,6 +10,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import org.graphstream.graph.Edge;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.view.Viewer;
 
 /**
  *
@@ -30,8 +35,6 @@ public class Grafo {
      * @author Frank,Giulianna
      * @return the vertices
      */
-    
-    
     public VertexList getVertices() {
         return vertices;
 
@@ -86,8 +89,7 @@ public class Grafo {
      * @param NodoId
      * @param RealNum
      */
-    
-    public void MatrixGraph(VertexList vertices, WeightList peso, int NodoId, int RealNum) {
+    public Grafo(VertexList vertices, WeightList peso, int NodoId, int RealNum) {
         try {
 
             this.vertices = vertices;
@@ -143,7 +145,6 @@ public class Grafo {
      * @param vertice
      * @return boolean
      */
-
     public boolean returnIfVxFounded(String vertice) {
         for (int i = 0; i < realnumNodo; i++) {
             if (vertice.equals(vertexarray[i].getName())) {
@@ -236,9 +237,110 @@ public class Grafo {
         return aux;
 
     }
-    
-    public Vertex getVerbyint(int index){
-        Vertex s=this.vertexarray[index];
+
+    public Vertex getVerbyint(int index) {
+        Vertex s = this.vertexarray[index];
         return s;
     }
+
+    /**
+     * Funcion MotrarGraph Crea graficamente el grafo
+     *
+     * @author Frank,Giulianna
+     * @return Graph
+     */
+    public Graph MotrarGraph() {
+        System.setProperty("org.graphstream.ui", "swing");
+
+        Graph graph = new SingleGraph("GRAFO");
+        graph.setAttribute("ui.stylesheet", "graph { padding: 40px; } edge { arrow-shape: arrow; arrow-size: 20px, 8px; } node { size: 40px; fill-color: yellow, black; fill-mode: gradient-horizontal; text-alignment: at-right; text-padding: 10px, 15px; text-background-mode: rounded-box; text-background-color: #EB2; text-color: #222; } ");
+        Viewer viewer = graph.display();
+        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+
+        return graph;
+
+    }
+
+
+    /**
+     * Funcion IndividualEdge Se utiliza para poder mostrar el grafo
+     *
+     * @author Frank,Giulianna
+     * @param graph
+     * @param peso
+     * @param ver1
+     * @param ver2
+     * @return Graph
+     */
+    public Graph IndividualEdge(Graph graph, int peso, String ver1, String ver2) {
+
+        Edge aux = graph.addEdge(ver1 + "-->" + ver2, ver1, ver2, true);
+        aux.setAttribute("ui.label", peso);
+        return graph;
+
+    }
+
+    /**
+     * Funcion IndividualNode Se utiliza para poder mostrar el grafo
+     *
+     * @author Frank,Giulianna
+     * @param graph
+     * @param cualquiera
+     * @return
+     */
+    public Graph IndividualNode(Graph graph, Vertex cualquiera) {
+        Node aux = graph.addNode("" + cualquiera.getName());
+        aux.setAttribute("ui.label", cualquiera.getName());
+        aux.setAttribute("ui.color", cualquiera.getName());
+        return graph;
+    }
+
+    /**
+     * Funcion CrearNodes Se crea el nodo
+     *
+     * @author Frank,Giulianna
+     * @param grafico
+     * @return Graph
+     */
+    public Graph CrearNodes(Graph grafico) {
+        if (!this.vertices.IsEmpty()) {
+            Vertex aux = getVertices().getpFirst();
+            while (aux != null) {
+
+                grafico = IndividualNode(grafico, aux);
+
+                aux = aux.getSiguiente();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al crear los vertices del graficos!");
+        }
+
+        return grafico;
+    }
+
+    /**
+     * Funcion CrearEdges Se crean los arcos
+     *
+     * @author Frank,Giulianna
+     * @param grafico
+     * @return Graph
+     */
+    public Graph CrearEdges(Graph grafico) {
+
+        if (!this.peso.IsEmpty()) {
+            WeightNode pesoInicial = getPeso().getpFirst();
+
+            while (pesoInicial != null) {
+                IndividualEdge(grafico, pesoInicial.getWeight(), pesoInicial.getVertex1(), pesoInicial.getVertex2());
+                pesoInicial = pesoInicial.getpNext();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al hacer la grafica!");
+        }
+
+        return grafico;
+
+    }
+
 }

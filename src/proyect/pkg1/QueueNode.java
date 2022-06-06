@@ -13,7 +13,7 @@ public class QueueNode {
      private QueueNode siguiente;
     
     /**
-     * Constructor NodoCola
+     * Constructor QueueNode
      * Constructor que se utilizara para inicializar las instancias de los 
      nodos de las colas
      * @author Giulianna
